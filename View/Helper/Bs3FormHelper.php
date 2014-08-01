@@ -247,6 +247,9 @@ class Bs3FormHelper extends FormHelper {
  */
 	protected function _initInputOptions($options) {
 		$options = $this->_initLabel($options);
+		if ($this->inputOptions == null) {
+			$this->_processConfig($options);
+		}
 		$options = Hash::merge($this->inputOptions, $options);
 		$options = $this->currentInputOptions = $this->_processCustomConfig('input', $options);
 
