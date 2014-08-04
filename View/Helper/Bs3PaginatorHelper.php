@@ -5,7 +5,7 @@ class Bs3PaginatorHelper extends PaginatorHelper {
 
 	public function pagination($options = array()) {
 		$default = array(
-			'div' => 'pagination-container pagination-centered'
+			'div' => 'pagination-container text-center'
 		);
 		
 		$model = (empty($options['model'])) ? $this->defaultModel() : $options['model'];
