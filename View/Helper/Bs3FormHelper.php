@@ -446,7 +446,6 @@ class Bs3FormHelper extends FormHelper {
 			$value = $value ? 1 : 0;
 		}
 
-		$this->_domIdSuffixes = array();
 		foreach ($options as $optValue => $optTitle) {
 			$optionsHere = array('value' => $optValue, 'disabled' => false);
 
@@ -457,7 +456,7 @@ class Bs3FormHelper extends FormHelper {
 			if ($disabled && (!is_array($disabled) || in_array((string)$optValue, $disabled, !$isNumeric))) {
 				$optionsHere['disabled'] = true;
 			}
-			$tagName = $attributes['id'] . $this->domIdSuffix($optValue);
+			$tagName = $attributes['id'] . $optValue;
 
 			if (is_array($between)) {
 				$optTitle .= array_shift($between);
@@ -499,6 +498,14 @@ class Bs3FormHelper extends FormHelper {
 			}
 		}
 		$out = $hidden . implode($separator, $out);
+
+		$ifLabel = null;
+
+		if (isset($label)) {
+			$ifLabel = $this->label($label);
+		}
+
+		$out = $ifLabel . $out;
 
 		if (is_array($between)) {
 			$between = '';
